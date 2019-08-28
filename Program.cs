@@ -75,7 +75,7 @@ public class Program
 		//Select between intersection point 1 and intersection point2;
 		int best_premiutation = 0;
 		float min = float.MaxValue;
-		for(int i=0;i<4;i++)
+		for(int i=0;i<8;i++)
 		{
 			float d1 = GetDistance(IC0C1[best_premiutation&1],IC0C2[(best_premiutation>>1)&1]);
 			float d2 = GetDistance(IC0C1[best_premiutation&1],IC1C2[(best_premiutation>>2)&1]);
