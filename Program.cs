@@ -77,9 +77,9 @@ public class Program
 		float min = float.MaxValue;
 		for(int i=0;i<8;i++)
 		{
-			float d1 = GetDistance(IC0C1[best_premiutation&1],IC0C2[(best_premiutation>>1)&1]);
-			float d2 = GetDistance(IC0C1[best_premiutation&1],IC1C2[(best_premiutation>>2)&1]);
-			float d3 = GetDistance(IC0C2[(best_premiutation>>1)&1],IC1C2[(best_premiutation>>2)&1]);
+			float d1 = GetDistance(IC0C1[i&1],IC0C2[(i>>1)&1]);
+			float d2 = GetDistance(IC0C1[i&1],IC1C2[(i>>2)&1]);
+			float d3 = GetDistance(IC0C2[(i>>1)&1],IC1C2[(i>>2)&1]);
 			float sum = d1+d2+d3;
 			if(sum < min)
 			{
