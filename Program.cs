@@ -135,7 +135,7 @@ public class Program
 		float distance1 = GetDistance(actualUserLocation,accessPoint1);
 		float distance2 = GetDistance(actualUserLocation,accessPoint2);
 		
-		Console.WriteLine("Current user location: "+actualUserLocation.X+","+actualUserLocation.Y);
+		Console.WriteLine("Actual user location: "+actualUserLocation.X+","+actualUserLocation.Y);
 		
 		// Predict the user location using the position of the access points and the distances between them and the user.
 		PointF predictedUserLocation;
