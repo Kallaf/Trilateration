@@ -64,13 +64,13 @@ public class Program
 	
 	private static float GetDistance(PointF point1, PointF point2)
 	{
-		float a = (float)(point2.X - point1.X);
-		float b = (float)(point2.Y - point1.Y);
+		float a = point2.X - point1.X;
+		float b = point2.Y - point1.Y;
 
 		return (float)Math.Sqrt(a * a + b * b);
 	}
 	
-	public static PointF intersectionOf3Circles(PointF[] IC0C1,PointF[] IC0C2,PointF[] IC1C2,float radius0,float radius1,float radius2)
+	private static PointF intersectionOf3Circles(PointF[] IC0C1,PointF[] IC0C2,PointF[] IC1C2,float radius0,float radius1,float radius2)
 	{
 		//Select between intersection point 1 and intersection point2;
 		int best_premiutation = 0;
@@ -114,12 +114,14 @@ public class Program
 	
 	public static void Main()
 	{
-		PointF accessPoint0 = new PointF(15,5),accessPoint1 = new PointF(15,10),accessPoint2 = new PointF(7,7.5f);
-		float distance0 = 5,distance1 = 5,distance2 = 8.8f;
-		PointF userLocation;
-		bool canSpecifyLocation = getUserLocation(accessPoint0,distance0,accessPoint1,distance1,accessPoint2,distance2,out userLocation);
+		PointF accessPoint0 = new PointF(45,5),accessPoint1 = new PointF(15,10.54f),accessPoint2 = new PointF(7,7.5f);
+		PointF userLocation = new PointF(12,3.34f);
+		float distance0 = GetDistance(userLocation,accessPoint0),distance1 = GetDistance(userLocation,accessPoint1),distance2 = GetDistance(userLocation,accessPoint2);
+		Console.WriteLine("Current user location: "+userLocation.X+","+userLocation.Y);
+		PointF predictedUserLocation;
+		bool canSpecifyLocation = getUserLocation(accessPoint0,distance0,accessPoint1,distance1,accessPoint2,distance2,out predictedUserLocation);
 		if(canSpecifyLocation)
-			Console.WriteLine("The user is located at: "+userLocation.X+","+userLocation.Y);
+			Console.WriteLine("Predicted user location: "+predictedUserLocation.X+","+predictedUserLocation.Y);
 		else
 			Console.WriteLine("Cannot determine the user Location");
 	}
