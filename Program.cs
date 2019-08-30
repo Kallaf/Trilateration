@@ -70,7 +70,7 @@ public class Program
 		return (float)Math.Sqrt(a * a + b * b);
 	}
 	
-	private static PointF intersectionOf3Circles(PointF[] IC0C1,PointF[] IC0C2,PointF[] IC1C2,float radius0,float radius1,float radius2)
+	private static PointF intersectionOf3Circles(PointF[] IC0C1,PointF[] IC0C2,PointF[] IC1C2)
 	{
 		// Select between intersection point 1 and intersection point2 for each two circles using bit manpulation technique.
 		int best_premiutation = 0;
@@ -98,28 +98,23 @@ public class Program
 	{
 		// Each array represent the 2 intersecting points between 2 circles.
 		
-		// Intersecting point between circle0  and circle1.
+		// Intersecting points between circle0  and circle1.
 		PointF[] IC0C1 = new PointF[2];
 		
-		// Intersecting point between circle0  and circle2.
+		// Intersecting points between circle0  and circle2.
 		PointF[] IC0C2 = new PointF[2];
 		
-		// Intersecting point between circle1  and circle2.
+		// Intersecting points between circle1  and circle2.
 		PointF[] IC1C2 = new PointF[2];
 		
-		// Where ni is the number of intersecting points
-		int n1 = intersectionOf2Circles(center0,radius0,center1,radius1,out IC0C1[0],out IC0C1[1]);
-		int n2 = intersectionOf2Circles(center0,radius0,center2,radius2,out IC0C2[0],out IC0C2[1]);
-		int n3 = intersectionOf2Circles(center1,radius1,center2,radius2,out IC1C2[0],out IC1C2[1]);
+		userLocation = new PointF(float.NaN, float.NaN);
 		
-		// If ni == 0 this means there is no intersecting points between 2 circles as there is an error happened while calculating the distance.
-		// Fixing error should be handled later.
-		if(n1 == 0 || n2 == 0 || n3 == 0)
-		{
-			userLocation = new PointF(float.NaN, float.NaN);
-			return false;
-		}
-		userLocation = intersectionOf3Circles(IC0C1,IC0C2,IC1C2,radius0,radius1,radius2);
+		// If number of intersting points == 0 this means there is no intersecting points between 2 circles as there is an error happened while calculating the distance.
+		if(intersectionOf2Circles(center0,radius0,center1,radius1,out IC0C1[0],out IC0C1[1]) == 0)return false;
+		if(intersectionOf2Circles(center0,radius0,center2,radius2,out IC0C2[0],out IC0C2[1]) == 0)return false;
+		if(intersectionOf2Circles(center1,radius1,center2,radius2,out IC1C2[0],out IC1C2[1]) == 0)return false;
+
+		userLocation = intersectionOf3Circles(IC0C1,IC0C2,IC1C2);
 		return true;
 	}
 	
