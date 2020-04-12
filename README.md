@@ -1,4 +1,4 @@
-# CirclesIntersection
+# Trilateration
 
 ## Algorithm visualization
 
